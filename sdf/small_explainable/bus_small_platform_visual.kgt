@@ -1,0 +1,366 @@
+knode Top {
+   klabel "Model"
+   knode vtile_1 {
+      klabel "tile_1 [platform::AbstractStructure]"
+      knode vmicro_blaze_mem10 {
+         klabel "micro_blaze_mem1 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni10:tileMemory)
+         kedge ( :instructionsAndData -> vmicro_blaze_10:defaultMemory)
+      }
+      knode vmicro_blaze_ni10 {
+         klabel "micro_blaze_ni1 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem10:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_10:networkInterface)
+      }
+      knode vmicro_blaze_10 {
+         klabel "micro_blaze_1 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os10 {
+            klabel "micro_blaze_os1 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni10:tileProcessor)
+         kedge ( :defaultMemory -> vmicro_blaze_mem10:instructionsAndData)
+      }
+   }
+   knode vtile_7 {
+      klabel "tile_7 [platform::AbstractStructure]"
+      knode vmicro_blaze_70 {
+         klabel "micro_blaze_7 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os70 {
+            klabel "micro_blaze_os7 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni70:tileProcessor)
+         kedge ( :defaultMemory -> vmicro_blaze_mem70:instructionsAndData)
+      }
+      knode vmicro_blaze_mem70 {
+         klabel "micro_blaze_mem7 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni70:tileMemory)
+         kedge ( :instructionsAndData -> vmicro_blaze_70:defaultMemory)
+      }
+      knode vmicro_blaze_ni70 {
+         klabel "micro_blaze_ni7 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem70:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_70:networkInterface)
+      }
+   }
+   knode vtile_4 {
+      klabel "tile_4 [platform::AbstractStructure]"
+      knode vmicro_blaze_mem40 {
+         klabel "micro_blaze_mem4 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni40:tileMemory)
+         kedge ( :instructionsAndData -> vmicro_blaze_40:defaultMemory)
+      }
+      knode vmicro_blaze_40 {
+         klabel "micro_blaze_4 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os40 {
+            klabel "micro_blaze_os4 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni40:tileProcessor)
+         kedge ( :defaultMemory -> vmicro_blaze_mem40:instructionsAndData)
+      }
+      knode vmicro_blaze_ni40 {
+         klabel "micro_blaze_ni4 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem40:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_40:networkInterface)
+      }
+   }
+   knode vtile_3 {
+      klabel "tile_3 [platform::AbstractStructure]"
+      knode vmicro_blaze_ni30 {
+         klabel "micro_blaze_ni3 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem30:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_30:networkInterface)
+      }
+      knode vmicro_blaze_30 {
+         klabel "micro_blaze_3 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os30 {
+            klabel "micro_blaze_os3 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :defaultMemory -> vmicro_blaze_mem30:instructionsAndData)
+         kedge ( :networkInterface -> vmicro_blaze_ni30:tileProcessor)
+      }
+      knode vmicro_blaze_mem30 {
+         klabel "micro_blaze_mem3 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :instructionsAndData -> vmicro_blaze_30:defaultMemory)
+         kedge ( :networkInterface -> vmicro_blaze_ni30:tileMemory)
+      }
+   }
+   knode vtile_0 {
+      klabel "tile_0 [platform::AbstractStructure]"
+      knode vmicro_blaze_mem00 {
+         klabel "micro_blaze_mem0 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :instructionsAndData -> vmicro_blaze_00:defaultMemory)
+         kedge ( :networkInterface -> vmicro_blaze_ni00:tileMemory)
+      }
+      knode vmicro_blaze_00 {
+         klabel "micro_blaze_0 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os00 {
+            klabel "micro_blaze_os0 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :defaultMemory -> vmicro_blaze_mem00:instructionsAndData)
+         kedge ( :networkInterface -> vmicro_blaze_ni00:tileProcessor)
+      }
+      knode vmicro_blaze_ni00 {
+         klabel "micro_blaze_ni0 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem00:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_00:networkInterface)
+      }
+   }
+   knode vtile_2 {
+      klabel "tile_2 [platform::AbstractStructure]"
+      knode vmicro_blaze_ni20 {
+         klabel "micro_blaze_ni2 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileProcessor -> vmicro_blaze_20:networkInterface)
+         kedge ( :tileMemory -> vmicro_blaze_mem20:networkInterface)
+      }
+      knode vmicro_blaze_20 {
+         klabel "micro_blaze_2 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os20 {
+            klabel "micro_blaze_os2 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni20:tileProcessor)
+         kedge ( :defaultMemory -> vmicro_blaze_mem20:instructionsAndData)
+      }
+      knode vmicro_blaze_mem20 {
+         klabel "micro_blaze_mem2 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :instructionsAndData -> vmicro_blaze_20:defaultMemory)
+         kedge ( :networkInterface -> vmicro_blaze_ni20:tileMemory)
+      }
+   }
+   knode vtile_6 {
+      klabel "tile_6 [platform::AbstractStructure]"
+      knode vmicro_blaze_60 {
+         klabel "micro_blaze_6 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os60 {
+            klabel "micro_blaze_os6 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :networkInterface -> vmicro_blaze_ni60:tileProcessor)
+         kedge ( :defaultMemory -> vmicro_blaze_mem60:instructionsAndData)
+      }
+      knode vmicro_blaze_mem60 {
+         klabel "micro_blaze_mem6 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :instructionsAndData -> vmicro_blaze_60:defaultMemory)
+         kedge ( :networkInterface -> vmicro_blaze_ni60:tileMemory)
+      }
+      knode vmicro_blaze_ni60 {
+         klabel "micro_blaze_ni6 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem60:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_60:networkInterface)
+      }
+   }
+   knode vTDMBus {
+      klabel "TDMBus [platform::InstrumentedCommunicationModule]"
+      kport ni_7 {
+         klabel "ni_7"
+      }
+      kport ni_6 {
+         klabel "ni_6"
+      }
+      kport ni_5 {
+         klabel "ni_5"
+      }
+      kport ni_4 {
+         klabel "ni_4"
+      }
+      kport ni_3 {
+         klabel "ni_3"
+      }
+      kport ni_2 {
+         klabel "ni_2"
+      }
+      kport ni_1 {
+         klabel "ni_1"
+      }
+      kport ni_0 {
+         klabel "ni_0"
+      }
+   }
+   knode vtile_5 {
+      klabel "tile_5 [platform::AbstractStructure]"
+      knode vmicro_blaze_50 {
+         klabel "micro_blaze_5 [platform::InstrumentedProcessingModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport defaultMemory {
+            klabel "defaultMemory"
+         }
+         knode vmicro_blaze_os50 {
+            klabel "micro_blaze_os5 [platform::runtime::StaticCyclicScheduler, decision::Allocated]"
+         }
+         kedge ( :defaultMemory -> vmicro_blaze_mem50:instructionsAndData)
+         kedge ( :networkInterface -> vmicro_blaze_ni50:tileProcessor)
+      }
+      knode vmicro_blaze_mem50 {
+         klabel "micro_blaze_mem5 [platform::GenericMemoryModule]"
+         kport networkInterface {
+            klabel "networkInterface"
+         }
+         kport instructionsAndData {
+            klabel "instructionsAndData"
+         }
+         kedge ( :instructionsAndData -> vmicro_blaze_50:defaultMemory)
+         kedge ( :networkInterface -> vmicro_blaze_ni50:tileMemory)
+      }
+      knode vmicro_blaze_ni50 {
+         klabel "micro_blaze_ni5 [platform::InstrumentedCommunicationModule]"
+         kport bus {
+            klabel "bus"
+         }
+         kport tileProcessor {
+            klabel "tileProcessor"
+         }
+         kport tileMemory {
+            klabel "tileMemory"
+         }
+         kedge ( :tileMemory -> vmicro_blaze_mem50:networkInterface)
+         kedge ( :tileProcessor -> vmicro_blaze_50:networkInterface)
+      }
+   }
+}
