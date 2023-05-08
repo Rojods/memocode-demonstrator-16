@@ -93,6 +93,9 @@ for blockNum=1:size(blocks)
         elseif bt == "RelationalOperator"
             thisOps.ansiC.f64comp = 1;
             converted.processes_sizes(name) = 0;
+        elseif bt == "Sum"
+            thisOps.ansiC.f64add = str2double(length(get_param(block, "PortConnectivity"))) - 1;
+            converted.delays_operations(name) = thisOps;
         end
         converted.processes_operations(name) = thisOps;
     end
