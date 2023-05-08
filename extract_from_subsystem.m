@@ -1,6 +1,6 @@
 function [converted] = extract_from_subsystem(subsystem)
 %EXTRACT_FROM_SUBSYSTEM extracts a simulink subsystem model for Massymo
-% 
+%
 % This function converts a simulink model into a format usable by Massymo
 %
 % Supported blocks:
@@ -94,27 +94,36 @@ for blockNum=1:size(blocks)
             thisOps.ansiC.f64comp = 1;
             converted.processes_sizes(name) = 0;
         elseif bt == "Sum"
-            thisOps.ansiC.f64add = str2double(length(get_param(block, "PortConnectivity"))) - 1;
-            converted.delays_operations(name) = thisOps;
+            % thisOps.ansiC.f64add = str2double(length(get_param(block, "PortHandles").Inport));
+            thisOps.ansiC.f64add = 1;
+            converted.processes_sizes(name) = 0;
         end
         converted.processes_operations(name) = thisOps;
     end
-
+    
 end
 % now go through the links and store them
 lines = find_system(subsystem,'FindAll','On','type', 'line');
 for linex = 1:size(lines)
-    src = get_param(lines(linex), 'SrcBlockHandle');
-    dst = get_param(lines(linex), 'DstBlockHandle');
-    src_port = get_param(lines(linex), 'SrcPortHandle');
-    dst_port = get_param(lines(linex), 'DstPortHandle');
-    converted.links_src{end+1} = getfullname(src);
-    converted.links_dst{end+1} = getfullname(dst);
-    converted.links_src_port{end+1} = getfullname(src_port);
-    converted.links_dst_port{end+1} = getfullname(dst_port);
-    converted.links_size{end+1} = 64;
-%     converted.linksDsts{end+1} = getfullname(dst);
-%     converted.linksDataSizes{end+1} = 64;
+    srca = get_param(lines(linex), 'SrcBlockHandle');
+    src_porta = get_param(lines(linex), 'SrcPortHandle');
+    dsta = get_param(lines(linex), 'DstBlockHandle');
+    dst_porta = get_param(lines(linex), 'DstPortHandle');
+    for srci = 1:length(srca)
+        src = srca(srci);
+        for dsti = 1:length(dsta)
+            dst = dsta(dsti);
+            src_port = src_porta(srci);
+            dst_port = dst_porta(dsti);
+            converted.links_src{end+1} = getfullname(src);
+            converted.links_dst{end+1} = getfullname(dst);
+            converted.links_src_port{end+1} = getfullname(src_port);
+            converted.links_dst_port{end+1} = getfullname(dst_port);
+            converted.links_size{end+1} = 64;
+        end
+    end
+    %     converted.linksDsts{end+1} = getfullname(dst);
+    %     converted.linksDataSizes{end+1} = 64;
 end
 
 end
