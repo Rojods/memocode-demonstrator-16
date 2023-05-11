@@ -1,0 +1,361 @@
+knode Top {
+   klabel "Model"
+   knode vSpeedVectorSignal {
+      klabel "SpeedVectorSignal [impl::DataBlock]"
+   }
+   knode vInternalSpeedVectorSignal {
+      klabel "InternalSpeedVectorSignal [impl::DataBlock]"
+   }
+   knode vHeadingCalc {
+      klabel "HeadingCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vHeadingCalcRunnable0 {
+         klabel "HeadingCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport SpeedVectorSignal {
+            klabel "SpeedVectorSignal"
+         }
+         kport HeadingSignal {
+            klabel "HeadingSignal"
+         }
+      }
+   }
+   knode vFormatLoadFactorCalc {
+      klabel "FormatLoadFactorCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vFormatLoadFactorCalcRunnable0 {
+         klabel "FormatLoadFactorCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport InternalLoadFactorSignal {
+            klabel "InternalLoadFactorSignal"
+         }
+         kport INS2LoadFactorSignal {
+            klabel "INS2LoadFactorSignal"
+         }
+         kport INS1LoadFactorSignal {
+            klabel "INS1LoadFactorSignal"
+         }
+      }
+   }
+   knode vAccCalc {
+      klabel "AccCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vAccCalcRunnable0 {
+         klabel "AccCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport LoadFactorSignal {
+            klabel "LoadFactorSignal"
+         }
+         kport AccSignal {
+            klabel "AccSignal"
+         }
+      }
+   }
+   knode vLoadFactorSignal {
+      klabel "LoadFactorSignal [impl::DataBlock]"
+   }
+   knode vAltitudeCalc {
+      klabel "AltitudeCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vAltitudeCalcRunnable0 {
+         klabel "AltitudeCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport ADC1AltitudeSignal {
+            klabel "ADC1AltitudeSignal"
+         }
+         kport AltitudeSignal {
+            klabel "AltitudeSignal"
+         }
+         kport AccSignal {
+            klabel "AccSignal"
+         }
+      }
+   }
+   knode vSecondSpeedVectorCalc {
+      klabel "SecondSpeedVectorCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vSecondSpeedVectorCalcRunnable0 {
+         klabel "SecondSpeedVectorCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport SecondSpeed {
+            klabel "SecondSpeed"
+         }
+         kport SecondINS1SpeedVector {
+            klabel "SecondINS1SpeedVector"
+         }
+      }
+   }
+   knode vAccSignal {
+      klabel "AccSignal [impl::DataBlock]"
+   }
+   knode v30Hz {
+      klabel "30Hz [execution::PeriodicStimulus]"
+      kport activated {
+         klabel "activated"
+      }
+      kedge ( :activated -> vHeadingCalc:activators)
+      kedge ( :activated -> vSecondAccCalc:activators)
+      kedge ( :activated -> vFormatLoadFactorCalc:activators)
+      kedge ( :activated -> vLoadFactorCalc:activators)
+      kedge ( :activated -> vAccCalc:activators)
+      kedge ( :activated -> vSecondAltitudeCalc:activators)
+      kedge ( :activated -> vAltitudeCalc:activators)
+      kedge ( :activated -> vSecondSpeedVectorCalc:activators)
+   }
+   knode vSecondSpeed {
+      klabel "SecondSpeed [impl::DataBlock]"
+   }
+   knode vSpeedVectorCalc {
+      klabel "SpeedVectorCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vSpeedVectorCalcRunnable0 {
+         klabel "SpeedVectorCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport InternalSpeedVectorSignal {
+            klabel "InternalSpeedVectorSignal"
+         }
+         kport SpeedSignal {
+            klabel "SpeedSignal"
+         }
+         kport SpeedVectorSignal {
+            klabel "SpeedVectorSignal"
+         }
+      }
+   }
+   knode vPlatform {
+      klabel "Platform [platform::AbstractStructure]"
+      knode vPlatform_CPM_A530 {
+         klabel "Platform.CPM_A53 [platform::AbstractStructure]"
+         knode vPlatform_CPM_A53_A53core10 {
+            klabel "Platform.CPM_A53.A53core1 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core1Port1 {
+               klabel "core1Port1"
+            }
+            knode vCPM1_Core1_Runtime_CMP1_Core1_FP_Runtime_Scheduler0 {
+               klabel "CPM1_Core1_Runtime.CMP1_Core1_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+         knode vPlatform_CPM_A53_A53core40 {
+            klabel "Platform.CPM_A53.A53core4 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core4Port1 {
+               klabel "core4Port1"
+            }
+            knode vCPM2_Core4_Runtime_CMP2_Core4_FP_Runtime_Scheduler0 {
+               klabel "CPM2_Core4_Runtime.CMP2_Core4_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+         knode vPlatform_CPM_A53_A53core20 {
+            klabel "Platform.CPM_A53.A53core2 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core2Port1 {
+               klabel "core2Port1"
+            }
+            knode vCPM1_Core2_Runtime_CMP1_Core2_FP_Runtime_Scheduler0 {
+               klabel "CPM1_Core2_Runtime.CMP1_Core2_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+         knode vPlatform_CPM_A53_A53core30 {
+            klabel "Platform.CPM_A53.A53core3 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core3Port1 {
+               klabel "core3Port1"
+            }
+            knode vCPM2_Core3_Runtime_CMP2_Core3_FP_Runtime_Scheduler0 {
+               klabel "CPM2_Core3_Runtime.CMP2_Core3_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+      }
+      knode vPlatform_SDRAMBus0 {
+         klabel "Platform.SDRAMBus [platform::InstrumentedCommunicationModule, platform::RoundRobinCommunicationModule, platform::DigitalModule, platform::SynthetizableDigitalPorts]"
+         kport MainBusPort1 {
+            klabel "MainBusPort1"
+         }
+         knode vPlatform_SDRAMBusScheduler0 {
+            klabel "Platform.SDRAMBusScheduler [platform::runtime::RoundRobinScheduler, decision::Allocated]"
+         }
+         kedge ( :MainBusPort1 -> vPlatform_SDRAM0:MainSDRAMPort1)
+         kedge ( :MainBusPort1 -> vPlatform_MainBus0:MainBusPort1)
+      }
+      knode vPlatform_CPM_R50 {
+         klabel "Platform.CPM_R5 [platform::AbstractStructure]"
+         knode vPlatform_CPM_R5_R5core20 {
+            klabel "Platform.CPM_R5.R5core2 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core4Port1 {
+               klabel "core4Port1"
+            }
+            knode vCPM2_Core6_Runtime_CMP2_Core6_FP_Runtime_Scheduler0 {
+               klabel "CPM2_Core6_Runtime.CMP2_Core6_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+         knode vPlatform_CPM_R5_R5core10 {
+            klabel "Platform.CPM_R5.R5core1 [platform::GenericProcessingModule, platform::DigitalModule, platform::SynthetizableDigitalPorts, platform::InstrumentedProcessingModule]"
+            kport core3Port1 {
+               klabel "core3Port1"
+            }
+            knode vCPM2_Core5_Runtime_CMP2_Core5_FP_Runtime_Scheduler0 {
+               klabel "CPM2_Core5_Runtime.CMP2_Core5_FP_Runtime_Scheduler [platform::runtime::FixedPriorityScheduler, platform::PlatformElem, decision::Allocated]"
+            }
+         }
+      }
+      knode vPlatform_OCMAXI0 {
+         klabel "Platform.OCMAXI [platform::InstrumentedCommunicationModule, platform::RoundRobinCommunicationModule, platform::DigitalModule, platform::SynthetizableDigitalPorts]"
+         kport CPM1AXIPort2 {
+            klabel "CPM1AXIPort2"
+         }
+         kport CPM1AXIPort3 {
+            klabel "CPM1AXIPort3"
+         }
+         kport CPM1AXIPort4 {
+            klabel "CPM1AXIPort4"
+         }
+         kport CPM1AXIPort1 {
+            klabel "CPM1AXIPort1"
+         }
+         knode vPlatform_OCMAXIScheduler0 {
+            klabel "Platform.OCMAXIScheduler [platform::runtime::RoundRobinScheduler, decision::Allocated]"
+         }
+         kedge ( :CPM1AXIPort3 -> vPlatform_OCM0:OCM1Port1)
+      }
+      knode vPlatform_MainBus0 {
+         klabel "Platform.MainBus [platform::InstrumentedCommunicationModule, platform::RoundRobinCommunicationModule, platform::DigitalModule, platform::SynthetizableDigitalPorts]"
+         kport MainBusPort1 {
+            klabel "MainBusPort1"
+         }
+         knode vPlatform_MainBusScheduler0 {
+            klabel "Platform.MainBusScheduler [platform::runtime::RoundRobinScheduler, decision::Allocated]"
+         }
+      }
+      knode vPlatform_SDRAM0 {
+         klabel "Platform.SDRAM [platform::GenericMemoryModule, platform::DigitalModule, platform::SynthetizableDigitalPorts]"
+         kport MainSDRAMPort1 {
+            klabel "MainSDRAMPort1"
+         }
+         knode vSecondINS1SpeedVector0 {
+            klabel "SecondINS1SpeedVector [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vSecondAcc0 {
+            klabel "SecondAcc [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vSecondAltitude0 {
+            klabel "SecondAltitude [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vINS1SpeedVectorSignal0 {
+            klabel "INS1SpeedVectorSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vHeadingSignal0 {
+            klabel "HeadingSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vAltitudeSignal0 {
+            klabel "AltitudeSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vSpeedSignal0 {
+            klabel "SpeedSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vSecondINS1LoadFactor0 {
+            klabel "SecondINS1LoadFactor [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vINS2LoadFactorSignal0 {
+            klabel "INS2LoadFactorSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vSecondADC1Altitude0 {
+            klabel "SecondADC1Altitude [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vADC1AltitudeSignal0 {
+            klabel "ADC1AltitudeSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vINS1LoadFactorSignal0 {
+            klabel "INS1LoadFactorSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+         knode vINS2SpeedVectorSignal0 {
+            klabel "INS2SpeedVectorSignal [decision::MemoryMapped, impl::DataBlock, decision::Allocated]"
+         }
+      }
+      knode vPlatform_OCM0 {
+         klabel "Platform.OCM [platform::GenericMemoryModule, platform::DigitalModule, platform::SynthetizableDigitalPorts]"
+         kport OCM1Port1 {
+            klabel "OCM1Port1"
+         }
+      }
+   }
+   knode vSecondAccCalc {
+      klabel "SecondAccCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vSecondAccCalcRunnable0 {
+         klabel "SecondAccCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport SecondAcc {
+            klabel "SecondAcc"
+         }
+         kport SecondINS1LoadFactor {
+            klabel "SecondINS1LoadFactor"
+         }
+      }
+   }
+   knode vFormatSpeedVectorCalc {
+      klabel "FormatSpeedVectorCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vFormatSpeedVectorCalcRunnable0 {
+         klabel "FormatSpeedVectorCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport INS1SpeedVectorSignal {
+            klabel "INS1SpeedVectorSignal"
+         }
+         kport InternalSpeedVectorSignal {
+            klabel "InternalSpeedVectorSignal"
+         }
+         kport INS2SpeedVectorSignal {
+            klabel "INS2SpeedVectorSignal"
+         }
+      }
+   }
+   knode vInternalLoadFactorSignal {
+      klabel "InternalLoadFactorSignal [impl::DataBlock]"
+   }
+   knode v60Hz {
+      klabel "60Hz [execution::PeriodicStimulus]"
+      kport activated {
+         klabel "activated"
+      }
+      kedge ( :activated -> vFormatSpeedVectorCalc:activators)
+      kedge ( :activated -> vSpeedVectorCalc:activators)
+   }
+   knode vLoadFactorCalc {
+      klabel "LoadFactorCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vLoadFactorCalcRunnable0 {
+         klabel "LoadFactorCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport InternalLoadFactorSignal {
+            klabel "InternalLoadFactorSignal"
+         }
+         kport LoadFactorSignal {
+            klabel "LoadFactorSignal"
+         }
+      }
+   }
+   knode vSecondAltitudeCalc {
+      klabel "SecondAltitudeCalc [execution::CommunicatingTask, execution::LoopingTask]"
+      kport activators {
+         klabel "activators"
+      }
+      knode vSecondAltitudeCalcRunnable0 {
+         klabel "SecondAltitudeCalcRunnable [impl::CommunicatingExecutable, impl::Executable, impl::InstrumentedExecutable]"
+         kport SecondADC1Altitude {
+            klabel "SecondADC1Altitude"
+         }
+         kport SecondAltitude {
+            klabel "SecondAltitude"
+         }
+         kport SecondAcc {
+            klabel "SecondAcc"
+         }
+      }
+   }
+}
