@@ -2,6 +2,10 @@
 
 This is the companion repository for the MEMOCODE'23 submission n. 16.
 
+Due to the size restrictions of GitHub (and therefore open4science), the zipped repository has been uploaded
+to another website which is provided by MEMOCODE'23. You are welcome to download the `zip` file [here](https://hs-niederrhein.sciebo.de/s/QwUO8tUPztjKVrD) in order
+to avoiding downloading one file at a time from the anonymised repository.
+
 Regardless if you are checking this repository from a Linux or Windows OS, you need at least Java 11 to run the I-modules and E-modules.
 We recommend using a versioning installer like [jabba](https://github.com/shyiko/jabba) and installing the lastest stable JVM possible.
 The modules were tested with Amazon Coretto and the Graal JVM.
