@@ -40,6 +40,12 @@ systemgraph {
       "core1Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
@@ -64,6 +70,12 @@ systemgraph {
       "core2Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
@@ -88,6 +100,12 @@ systemgraph {
       "core3Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
@@ -112,6 +130,12 @@ systemgraph {
       "core4Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
@@ -140,6 +164,12 @@ systemgraph {
       "core3Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
@@ -164,6 +194,12 @@ systemgraph {
       "core4Port1": "AXI"
     },
     "modalInstructionsPerCycle": {
+      "default": {
+        "f64add": 0.16666666666_64,
+        "f64mul": 0.0001_64,
+        "f64copy": 0.25_64,
+        "f64comp": 0.25_64
+      },
       "defaultTicks": {
         "tick":      1.00000000000_64
       },
