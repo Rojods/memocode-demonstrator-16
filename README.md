@@ -403,6 +403,76 @@ where the scheduler `micro_blaze_os0` shows the list schedule computed for this 
 Kindly keep in mind that some of these combinations are actually hard problems to be proved optimally, so the `--x-max-solutions` can be handy to limit the amount of time spent looking for better solutions.
 For this same reason, the parameter `-x-total-time-out` can also put a **firm** limit on the total time elapsed by the explorer.
 It can overshoot a bit due to how the limit is realized by the [Choco Solver](https://choco-solver.org/docs/solving/limits/), but it won't be an overshoot of hours. The maximum observed so far was in the range of seconds.
+
+
+Here's a list of the commands to run the other SDF tests of [Experiment IV in this paper](https://dl.acm.org/doi/10.1145/3133210) for the sake of easiness:
+
+(1) RASTA and JPEG
+
+    .\orchestrator.exe --run-path run_RaJp .\sdf\RaJp\c_rasta.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\RaJp\d_jpegEnc1.sdf.xml # Windows
+
+    ./orchestrator --run-path run_RaJp ./sdf/RaJp/c_rasta.hsdf.xml ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/RaJp/d_jpegEnc1.sdf.xml # Linux
+
+(2) Sobel, RASTA and JPEG
+
+    .\orchestrator.exe --run-path run_SoRaJp .\sdf\SoRaJp\c_rasta.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\SoRaJp\a_sobel.hsdf.xml .\sdf\SoRaJp\d_jpegEnc1.sdf.xml # Windows
+
+    ./orchestrator --run-path run_SoRaJp ./sdf/SoRaJp/c_rasta.hsdf.xml  ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/SoRaJp/a_sobel.hsdf.xml ./sdf/SoRaJp/d_jpegEnc1.sdf.xml # Linux
+
+(3) Sobel, SuSAN and JPEG
+
+    .\orchestrator.exe --run-path run_SoSuJp .\sdf\SoSuJp\b_susan.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\SoSuJp\a_sobel.hsdf.xml .\sdf\SoSuJp\d_jpegEnc1.sdf.xml # Windows
+
+    ./orchestrator --run-path run_SoSuJp ./sdf/SoSuJp/b_susan.hsdf.xml  ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/SoSuJp/a_sobel.hsdf.xml ./sdf/SoSuJp/d_jpegEnc1.sdf.xml # Linux
+
+(4) Sobel, SuSAN and RASTA
+
+    .\orchestrator.exe --run-path run_SoSuRa .\sdf\SoSuRa\b_susan.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\SoSuRa\a_sobel.hsdf.xml .\sdf\SoSuRa\c_rasta.hsdf.xml # Windows
+
+    ./orchestrator --run-path run_SoSuRa ./sdf/SoSuRa/b_susan.hsdf.xml  ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/SoSuRa/a_sobel.hsdf.xml ./sdf/SoSuRa/c_rasta.hsdf.xml # Linux
+
+(5) SuSAN, RASTA and JPEG
+
+    .\orchestrator.exe --run-path run_SuRaJp .\sdf\SuRaJp\b_susan.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\SuRaJp\a_sobel.hsdf.xml .\sdf\SuRaJp\d_jpegEnc1.sdf.xml # Windows
+
+    ./orchestrator --run-path run_SuRaJp ./sdf/SuRaJp/b_susan.hsdf.xml  ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/SuRaJp/a_sobel.hsdf.xml ./sdf/SuRaJp/d_jpegEnc1.sdf.xml # Linux
+
+(6) Sobel, SuSAN, RASTA and JPEG
+
+    .\orchestrator.exe --run-path run_SoSuRaJp .\sdf\SoSuRaJp\a_sobel.hsdf.xml .\sdf\SoSuRaJp\b_susan.hsdf.xml .\sdf\small_explainable\bus_small_with_hwacc.fiodl .\sdf\SoSuRaJp\a_sobel.hsdf.xml .\sdf\SoSuRaJp\d_jpegEnc1.sdf.xml # Windows
+
+    ./orchestrator --run-path run_SoSuRaJp ./sdf/SoSuRaJp/a_sobel.hsdf.xml ./sdf/SoSuRaJp/b_susan.hsdf.xml  ./sdf/small_explainable/bus_small_with_hwacc.fiodl ./sdf/SoSuRaJp/a_sobel.hsdf.xml ./sdf/SoSuRaJp/d_jpegEnc1.sdf.xml # Linux
+
+And, to showcase the composability of the approach and the tool, we should not forget the composing the SDF applications with the DeviceTree is possible! Try it out:
+
+    .\orchestrator.exe --run-path run_combi_sdf_dt .\sdf\small_explainable\a_sobel.hsdf.xml .\simulink_devicetree\runtimes.yaml .\simulink_devicetree\tile0.dts .\simulink_devicetree\tile1.dts # Windows
+
+    ./orchestrator --run-path run_combi_sdf_dt ./sdf/small_explainable/a_sobel.hsdf.xml ./simulink_devicetree/runtimes.yaml ./simulink_devicetree/tile0.dts ./simulink_devicetree/tile1.dts # Linux
+
+The resulting `fiodl` file will contain some elements of the DeviceTree specification, at least enough to express the mapped and scheduled solution, e.g. `reversed_0...fiodl`:
+
+    vertex "os0"
+    [decision::platform::runtime::AllocatedSingleSlotSCS, platform::runtime::AbstractScheduler]
+    ()
+    {
+        "entries": [
+            "get_pixel",
+            "gy",
+            "gx"
+        ]
+    }
+    ...
+    vertex "os1"
+    [decision::platform::runtime::AllocatedSingleSlotSCS, platform::runtime::AbstractScheduler]
+    ()
+    {
+        "entries": [
+            "abs"
+        ]
+    }
+
+Where the self-timed list schedules for each "OS" (assumed to be bare-metal in actuality) is shown.
+
 ## Creating new design models
 
 It is possible to create new design models so that XXxXxXx can identify its design space and solve it.
@@ -474,5 +544,5 @@ framework can be generated that enables one to see a bit better the `fiodl` file
 For the sake of blind-reviewing, the tool which performs this conversion is unfortunately not included in this repository, but some of the demonstrators
 given are the results of the tool.
 
-You can visualize it by opening any of the files with the KIELER extensions for visual code, which will then open a diagram view of the KGT file.
+You can visualize it by opening any of the files with the [KIELER extensions for visual code](https://marketplace.visualstudio.com/items?itemName=kieler.keith-vscode), which will then open a diagram view of the KGT file.
 
