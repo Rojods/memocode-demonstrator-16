@@ -2,6 +2,9 @@
 
 This is the companion repository for the MEMOCODE'23 submission n. 16.
 
+The case studies does not show how to *extend* the tool, but rather the outcomes after it has been extended, in line with the the paper.
+More information on how one extends the tool on top of the module blueprints and core libraries will be given after the double-blind restraint is lifted, in the actual tool's sourcecode repository.
+
 ## Downloading the anonymous repository
 
 Due to the size restrictions of GitHub (and therefore open4science), the zipped repository has been uploaded
@@ -40,7 +43,6 @@ If you plan to run the simulink example, you must also have `matlab` callable in
 on Windows, and there is good chance you know how to do it this already if you are running from Linux. 
 Otherwise, follow [this link for windows](https://se.mathworks.com/matlabcentral/answers/94933-how-do-i-edit-my-system-path-in-windows)
 or [this link for Linux](https://unix.stackexchange.com/questions/244941/how-to-add-my-matlab-to-path) to get a good start.
-Sadly, Google (and alternatives) is your friend here; it is impossible to predict your exact setup.
 
 ## Running the provided demonstrators
 
